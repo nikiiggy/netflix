@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netflix - Anniversary / Gift Page</title>
+  <title>Website Ucapan Netflix</title>
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,17 +26,18 @@
       user-select: none;
     }
 
-    /* Navbar */
+    /* Navbar Header */
     .navbar {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
       height: 68px;
       padding: 0 4%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
       z-index: 10;
     }
 
@@ -256,7 +257,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.9);
-      z-index: 100;
+      z-index: 200;
       align-items: center;
       justify-content: center;
     }
@@ -305,6 +306,7 @@
     /* Responsive Layout Mobile Portrait */
     @media (max-width: 768px) {
       .navbar {
+        top: 0;
         padding: 0 15px;
         height: 56px;
       }
@@ -375,8 +377,8 @@
   <!-- Hero Section -->
   <section class="hero" id="heroBg">
     <div class="hero-content">
-      <div class="category-tags" id="txtCategory">ROMANCE | LOVE | FOREVER</div>
-      <h1 class="main-title" id="txtTitle">Araline & Gabriel</h1>
+      <div class="category-tags" id="txtCategory">HAPPY BIRTHDAY from Araline</div>
+      <h1 class="main-title" id="txtTitle">Gabriel Tanjaya</h1>
       <div class="meta-info">
         <span id="txtYear">2026</span>
         <span class="badge" id="txtBadge">G</span>
@@ -402,7 +404,7 @@
   <section class="memories-section">
     <h2 class="section-title">Other Memories</h2>
     <div class="gallery-grid" id="galleryContainer">
-      <!-- Foto galeri akan dimasukkan otomatis dari script bawah -->
+      <!-- Foto galeri dimasukkan otomatis via JavaScript -->
     </div>
   </section>
 
@@ -421,45 +423,29 @@
     </div>
   </div>
 
-  <!-- ============================================================= -->
-  <!-- AREA PENGISIAN DATA / LINK DIBUAT GAMPANG DI BAWAH INI         -->
-  <!-- ============================================================= -->
+  <!-- AREA CONFIG DATA -->
   <script>
     const DATA_WEBSITE = {
-      // 1. Tulisan di atas Nama
-      kategori: "ROMANCE | LOVE | FOREVER",
-
-      // 2. Nama Utama
-      namaPasangan: "Araline & Gabriel",
-
-      // 3. Info Tambahan (Tahun, Badge, Durasi)
+      // Konten Website Ucapan
+      kategori: "HAPPY BIRTHDAY from Araline",
+      namaPasangan: "Gabriel Tanjaya",
       tahun: "2026",
       badge: "G",
       durasi: "1h 3m",
-
-      // 4. Cerita / Text Ucapan
       deskripsi: "Pertemuan pertama mereka terjadi di halaman belakang kompleks studio mereka yang gersang. Araline sedang duduk di bangku taman, membawa buku catatan dan meteran, mencoba merancang taman komunal yang sempurna. Tiba-tiba, sebuah pesawat kertas mendarat tepat di atas buku catatannya. Di sayap pesawat itu, ada coretan cat minyak berwarna kuning cerah berbentuk matahari kecil.",
-
-      // 5. Link Video YouTube (Isi ID Video saja, contoh dari URL https://www.youtube.com/watch?v=dQw4w9WgXcQ -> "dQw4w9WgXcQ")
       youtubeVideoId: "YjwloyG3DGM",
-
-      // 6. Link Foto Sampul Utama (Hero Background)
-      fotoUtamaHero: "https://i.pinimg.com/736x/9d/aa/61/9daa6106ed8d715f6fddf24adc867dbf.jpg",
-
-      // 7. Link 4 Foto Galeri di Bawah ("Other Memories")
+      fotoUtamaHero: "https://i.pinimg.com/736x/4a/10/c8/4a10c8583c97712377d062723db27ef9.jpg",
       fotoMemories: [
-        "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop"
+        "https://i.pinimg.com/736x/16/2d/df/162ddf4d08f1a2612cfd8567c015b1cd.jpg",
+        "https://i.pinimg.com/736x/e1/b7/fd/e1b7fd8c4c6b604fbb5d15df2ef26584.jpg",
+        "https://i.pinimg.com/736x/f6/2f/a0/f62fa0ab0ef139ea048673c6f884542e.jpg",
+        "https://i.pinimg.com/1200x/0a/87/8b/0a878bedd31dadbfa485b9fd983fbcae.jpg"
       ]
     };
 
-    // =============================================================
-    // SYSTEM CODE (TIDAK PERLU DIUBAH)
-    // =============================================================
+    // System Handler
     document.addEventListener("DOMContentLoaded", () => {
-      // Set Text Content
+      // Set Texts
       document.getElementById('txtCategory').textContent = DATA_WEBSITE.kategori;
       document.getElementById('txtTitle').textContent = DATA_WEBSITE.namaPasangan;
       document.getElementById('txtYear').textContent = DATA_WEBSITE.tahun;
@@ -467,7 +453,7 @@
       document.getElementById('txtDuration').textContent = DATA_WEBSITE.durasi;
       document.getElementById('txtDescription').textContent = DATA_WEBSITE.deskripsi;
 
-      // Set Hero Background Image & Dynamic Overlay Gradient
+      // Set Backgrounds
       const heroBg = document.getElementById('heroBg');
       const setHeroBg = () => {
         if (window.innerWidth <= 768) {
@@ -479,7 +465,7 @@
       setHeroBg();
       window.addEventListener('resize', setHeroBg);
 
-      // Render Memories Gallery
+      // Render Gallery
       const galleryContainer = document.getElementById('galleryContainer');
       galleryContainer.innerHTML = '';
       DATA_WEBSITE.fotoMemories.forEach((url, idx) => {
@@ -489,7 +475,7 @@
         galleryContainer.appendChild(cardDiv);
       });
 
-      // Modal Elements & Handlers
+      // Modals Logic
       const playBtn = document.getElementById('playBtn');
       const videoModal = document.getElementById('videoModal');
       const closeVideoBtn = document.getElementById('closeVideoBtn');
