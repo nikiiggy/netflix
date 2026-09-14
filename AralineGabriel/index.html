@@ -423,7 +423,7 @@
     </div>
   </div>
 
-  <!-- AREA CONFIG DATA -->
+  <!-- AREA CONFIG DATA (Dua Versi Foto Hero Tersedia) -->
   <script>
     const DATA_WEBSITE = {
       // Konten Website Ucapan
@@ -434,7 +434,14 @@
       durasi: "1h 3m",
       deskripsi: "Pertemuan pertama mereka terjadi di halaman belakang kompleks studio mereka yang gersang. Araline sedang duduk di bangku taman, membawa buku catatan dan meteran, mencoba merancang taman komunal yang sempurna. Tiba-tiba, sebuah pesawat kertas mendarat tepat di atas buku catatannya. Di sayap pesawat itu, ada coretan cat minyak berwarna kuning cerah berbentuk matahari kecil.",
       youtubeVideoId: "YjwloyG3DGM",
-      fotoUtamaHero: "https://i.pinimg.com/736x/4a/10/c8/4a10c8583c97712377d062723db27ef9.jpg",
+      
+      // 1. Foto Hero versi LANDSCAPE (Tampilan Layar PC / Laptop / Tablet)
+      fotoHeroPC: "https://i.ibb.co.com/xKMpx9L7/EDIT-FOTO-02.jpg",
+      
+      // 2. Foto Hero versi PORTRAIT (Tampilan Layar HP / Mobile)
+      fotoHeroMobile: "https://i.ibb.co.com/q3p951dN/EDIT-FOTO-01.jpg",
+      
+      // 4 Foto Galeri Kenangan
       fotoMemories: [
         "https://i.pinimg.com/736x/16/2d/df/162ddf4d08f1a2612cfd8567c015b1cd.jpg",
         "https://i.pinimg.com/736x/e1/b7/fd/e1b7fd8c4c6b604fbb5d15df2ef26584.jpg",
@@ -453,13 +460,15 @@
       document.getElementById('txtDuration').textContent = DATA_WEBSITE.durasi;
       document.getElementById('txtDescription').textContent = DATA_WEBSITE.deskripsi;
 
-      // Set Backgrounds
+      // System Switcher Background Image berdasarkan Ukuran Layar (Mobile vs PC)
       const heroBg = document.getElementById('heroBg');
       const setHeroBg = () => {
         if (window.innerWidth <= 768) {
-          heroBg.style.backgroundImage = `linear-gradient(0deg, #141414 45%, rgba(20,20,20,0.6) 75%, rgba(20,20,20,0.1) 100%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+          // HP Pakai Foto Portrait
+          heroBg.style.backgroundImage = `linear-gradient(0deg, #141414 45%, rgba(20,20,20,0.6) 75%, rgba(20,20,20,0.1) 100%), url('${DATA_WEBSITE.fotoHeroMobile}')`;
         } else {
-          heroBg.style.backgroundImage = `linear-gradient(90deg, #141414 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0) 75%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+          // PC Pakai Foto Landscape
+          heroBg.style.backgroundImage = `linear-gradient(90deg, #141414 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0) 75%), url('${DATA_WEBSITE.fotoHeroPC}')`;
         }
       };
       setHeroBg();
@@ -475,7 +484,7 @@
         galleryContainer.appendChild(cardDiv);
       });
 
-      // Modals Logic
+      // Modals Logic (Video & Lightbox Foto)
       const playBtn = document.getElementById('playBtn');
       const videoModal = document.getElementById('videoModal');
       const closeVideoBtn = document.getElementById('closeVideoBtn');
