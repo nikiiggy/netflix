@@ -529,7 +529,7 @@
       margin-top: 3px;
     }
 
-    /* TOMBOL CTA DALAM CARD PAKET */
+    /* TOMBOL CTA DALAM PAKET */
     .btn-pkg-cta {
       width: 100%;
       padding: 10px 0;
@@ -906,7 +906,6 @@
                 <li><i class="fa-solid fa-check"></i> Bahan Tanpa Kaca (Aman Kirim)</li>
                 <li><i class="fa-solid fa-check"></i> Request Layout Portrait / Landscape</li>
               </ul>
-              <!-- CTA DALAM PAKET 1 -->
               <a href="#" id="btnCtaPkg1" target="_blank" class="btn-pkg-cta">
                 <i class="fa-brands fa-whatsapp"></i> Pilih Paket 1
               </a>
@@ -924,7 +923,6 @@
                 <li><i class="fa-solid fa-check"></i> Pop-up Play Video & Galeri Foto</li>
                 <li><i class="fa-solid fa-check"></i> FREE Jasa Edit Video Slideshow Simpel</li>
               </ul>
-              <!-- CTA DALAM PAKET 2 -->
               <a href="#" id="btnCtaPkg2" target="_blank" class="btn-pkg-cta">
                 <i class="fa-brands fa-whatsapp"></i> Pilih Paket 2
               </a>
@@ -943,7 +941,6 @@
                 <li><i class="fa-solid fa-check"></i> Website Ucapan Digital Interaktif</li>
                 <li><i class="fa-solid fa-check"></i> FREE QR Card (Scan Langsung ke Web)</li>
               </ul>
-              <!-- CTA DALAM PAKET 3 -->
               <a href="#" id="btnCtaPkg3" target="_blank" class="btn-pkg-cta">
                 <i class="fa-brands fa-whatsapp"></i> Pilih Paket 3
               </a>
@@ -1044,7 +1041,7 @@
     </div>
   </div>
 
-  <!-- AREA CONFIG DATA -->
+  <!-- AREA CONFIG DATA (Dua Versi Foto Hero Tersedia) -->
   <script>
     const DATA_WEBSITE = {
       // Data WhatsApp & Toko
@@ -1067,7 +1064,14 @@
       durasi: "1h 3m",
       deskripsi: "Pertemuan pertama mereka terjadi di halaman belakang kompleks studio mereka yang gersang. Araline sedang duduk di bangku taman, membawa buku catatan dan meteran, mencoba merancang taman komunal yang sempurna. Tiba-tiba, sebuah pesawat kertas mendarat tepat di atas buku catatannya. Di sayap pesawat itu, ada coretan cat minyak berwarna kuning cerah berbentuk matahari kecil.",
       youtubeVideoId: "YjwloyG3DGM",
-      fotoUtamaHero: "https://i.pinimg.com/736x/4a/10/c8/4a10c8583c97712377d062723db27ef9.jpg",
+      
+      // 1. Foto Hero versi LANDSCAPE (Layar PC / Laptop 1920x1080 px)
+      fotoHeroPC: "https://i.ibb.co.com/xKMpx9L7/EDIT-FOTO-02.jpg",
+      
+      // 2. Foto Hero versi PORTRAIT (Layar HP / Mobile 1080x1920 px)
+      fotoHeroMobile: "https://i.ibb.co.com/q3p951dN/EDIT-FOTO-01.jpg",
+      
+      // 4 Foto Galeri Kenangan
       fotoMemories: [
         "https://i.pinimg.com/736x/16/2d/df/162ddf4d08f1a2612cfd8567c015b1cd.jpg",
         "https://i.pinimg.com/736x/e1/b7/fd/e1b7fd8c4c6b604fbb5d15df2ef26584.jpg",
@@ -1078,7 +1082,7 @@
 
     // System Handler
     document.addEventListener("DOMContentLoaded", () => {
-      // Helper function untuk generate link WA
+      // Helper function generate link WA
       const getWaUrl = (customText) => {
         const msg = customText || DATA_WEBSITE.pesanWhatsApp;
         return `https://wa.me/${DATA_WEBSITE.noWhatsApp}?text=${encodeURIComponent(msg)}`;
@@ -1088,7 +1092,6 @@
       document.getElementById('waCtaBtnTop').href = getWaUrl();
       document.getElementById('btnCtaPopupBottom').href = getWaUrl();
       
-      // CTA Khusus Pilihan Paket di Dalam Modal
       document.getElementById('btnCtaPkg1').href = getWaUrl("Halo admin, saya berminat order Paket 1 (Pigora Fisik A4) Website Ucapan Netflix!");
       document.getElementById('btnCtaPkg2').href = getWaUrl("Halo admin, saya berminat order Paket 2 (Digital Website) Ucapan Netflix!");
       document.getElementById('btnCtaPkg3').href = getWaUrl("Halo admin, saya berminat order Paket 3 (Complete Bundle Fisik + Digital) Website Ucapan Netflix!");
@@ -1110,13 +1113,15 @@
       document.getElementById('txtDuration').textContent = DATA_WEBSITE.durasi;
       document.getElementById('txtDescription').textContent = DATA_WEBSITE.deskripsi;
 
-      // Set Background Hero Image
+      // System Switcher Background Image berdasarkan Ukuran Layar (Mobile vs PC)
       const heroBg = document.getElementById('heroBg');
       const setHeroBg = () => {
         if (window.innerWidth <= 768) {
-          heroBg.style.backgroundImage = `linear-gradient(0deg, #141414 45%, rgba(20,20,20,0.6) 75%, rgba(20,20,20,0.1) 100%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+          // HP Pakai Foto Portrait (1080x1920)
+          heroBg.style.backgroundImage = `linear-gradient(0deg, #141414 45%, rgba(20,20,20,0.6) 75%, rgba(20,20,20,0.1) 100%), url('${DATA_WEBSITE.fotoHeroMobile}')`;
         } else {
-          heroBg.style.backgroundImage = `linear-gradient(90deg, #141414 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0) 75%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+          // PC Pakai Foto Landscape (1920x1080)
+          heroBg.style.backgroundImage = `linear-gradient(90deg, #141414 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0) 75%), url('${DATA_WEBSITE.fotoHeroPC}')`;
         }
       };
       setHeroBg();
