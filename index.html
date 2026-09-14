@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview Website Ucapan Netflix</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #141414;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    /* STICKY TOP CTA BAR (MEMANJANG DI ATAS) */
+    .cta-top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background-color: #25d366;
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-top-bar:hover {
+      background-color: #20ba5a;
+    }
+
+    .cta-top-bar i {
+      font-size: 20px;
+    }
+
+    /* Navbar Penyesuaian karena Ada Top Bar */
+    .navbar {
+      position: fixed;
+      top: 48px; /* Turun 48px mengikuti tinggi sticky top bar */
+      width: 100%;
+      height: 68px;
+      padding: 0 4%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: default;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    .nav-links span {
+      color: #e5e5e5;
+      font-size: 13px;
+      cursor: default;
+      opacity: 0.9;
+    }
+
+    .nav-links span.active {
+      color: #ffffff;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      color: #e5e5e5;
+      cursor: default;
+    }
+
+    .profile-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      background-color: #e50914;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: default;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 85vh;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      padding: 48px 4% 0 4%; /* Padding top disesuaikan */
+      background-size: cover;
+      background-position: center right;
+      background-repeat: no-repeat;
+      transition: background-image 0.3s ease;
+    }
+
+    .hero-content {
+      max-width: 520px;
+      z-index: 2;
+    }
+
+    .category-tags {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #a3a3a3;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .main-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 64px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      line-height: 1.1;
+    }
+
+    .meta-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #a3a3a3;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      border: 1px solid #a3a3a3;
+      padding: 1px 5px;
+      font-size: 10px;
+      border-radius: 2px;
+    }
+
+    .description {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cccccc;
+      margin-bottom: 24px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 24px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-play {
+      background-color: #ffffff;
+      color: #000000;
+      cursor: pointer;
+    }
+
+    .btn-play:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+      transform: scale(1.03);
+    }
+
+    .btn-disabled {
+      background-color: rgba(109, 109, 110, 0.7);
+      color: #ffffff;
+      cursor: default;
+      opacity: 0.8;
+    }
+
+    .btn-icon-disabled {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      background: rgba(42, 42, 42, 0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      opacity: 0.8;
+    }
+
+    /* Gallery Section */
+    .memories-section {
+      padding: 20px 4%;
+      margin-top: -30px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content-video {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+    }
+
+    .modal-content-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .modal-content-image {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content-image img {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #ffffff;
+      font-size: 32px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* Responsive Layout Mobile Portrait */
+    @media (max-width: 768px) {
+      .cta-top-bar {
+        font-size: 12px;
+        height: 42px;
+      }
+
+      .navbar {
+        top: 42px;
+        padding: 0 15px;
+        height: 50px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px 30px 20px;
+        flex-direction: column;
+        justify-content: flex-end;
+        background-position: center top !important;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        margin-top: 220px;
+      }
+
+      .main-title {
+        font-size: 40px;
+      }
+
+      .description {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .memories-section {
+        padding: 15px 20px;
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky CTA Top Bar -->
+  <a href="#" id="waCtaBtn" target="_blank" class="cta-top-bar">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>Order Website Ucapan Netflix Sekarang (085155091238)</span>
+  </a>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <div class="logo">NETFLIX</div>
+      <div class="nav-links">
+        <span class="active">Home</span>
+        <span>Shows</span>
+        <span>Movies</span>
+        <span>Games</span>
+        <span>My Netflix</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <div class="profile-avatar"><i class="fa-solid fa-smile"></i></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="heroBg">
+    <div class="hero-content">
+      <div class="category-tags" id="txtCategory">ROMANCE | LOVE | FOREVER</div>
+      <h1 class="main-title" id="txtTitle">Araline & Gabriel</h1>
+      <div class="meta-info">
+        <span id="txtYear">2026</span>
+        <span class="badge" id="txtBadge">G</span>
+        <span id="txtDuration">1h 3m</span>
+      </div>
+      <p class="description" id="txtDescription">
+        ...
+      </p>
+      <div class="action-buttons">
+        <button class="btn btn-play" id="playBtn">
+          <i class="fa-solid fa-play"></i> Play
+        </button>
+        <button class="btn btn-disabled">
+          <i class="fa-solid fa-plus"></i> My List
+        </button>
+        <button class="btn-icon-disabled"><i class="fa-regular fa-thumbs-up"></i></button>
+        <button class="btn-icon-disabled"><i class="fa-regular fa-thumbs-down"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="memories-section">
+    <h2 class="section-title">Other Memories</h2>
+    <div class="gallery-grid" id="galleryContainer">
+      <!-- Foto galeri dimasukkan otomatis via JavaScript -->
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content-video">
+      <span class="close-btn" id="closeVideoBtn">&times;</span>
+      <iframe id="youtubeIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="modal" id="imageModal">
+    <div class="modal-content-image">
+      <span class="close-btn" id="closeImageBtn">&times;</span>
+      <img id="modalImg" src="" alt="Enlarged Memory">
+    </div>
+  </div>
+
+  <!-- AREA CONFIG DATA -->
+  <script>
+    const DATA_WEBSITE = {
+      // Data WhatsApp
+      noWhatsApp: "6285155091238",
+      pesanWhatsApp: "Halo, saya mau order Website Ucapan Tema Netflix seperti yang di preview dong!",
+
+      // Konten Website Ucapan
+      kategori: "HAPPY BIRTHDAY from Araline",
+      namaPasangan: "Gabriel Tanjaya",
+      tahun: "2026",
+      badge: "G",
+      durasi: "1h 3m",
+      deskripsi: "Pertemuan pertama mereka terjadi di halaman belakang kompleks studio mereka yang gersang. Araline sedang duduk di bangku taman, membawa buku catatan dan meteran, mencoba merancang taman komunal yang sempurna. Tiba-tiba, sebuah pesawat kertas mendarat tepat di atas buku catatannya. Di sayap pesawat itu, ada coretan cat minyak berwarna kuning cerah berbentuk matahari kecil.",
+      youtubeVideoId: "YjwloyG3DGM",
+      fotoUtamaHero: "https://i.pinimg.com/736x/4a/10/c8/4a10c8583c97712377d062723db27ef9.jpg",
+      fotoMemories: [
+        "https://i.pinimg.com/736x/16/2d/df/162ddf4d08f1a2612cfd8567c015b1cd.jpg",
+        "https://i.pinimg.com/736x/e1/b7/fd/e1b7fd8c4c6b604fbb5d15df2ef26584.jpg",
+        "https://i.pinimg.com/736x/f6/2f/a0/f62fa0ab0ef139ea048673c6f884542e.jpg",
+        "https://i.pinimg.com/1200x/0a/87/8b/0a878bedd31dadbfa485b9fd983fbcae.jpg"
+      ]
+    };
+
+    // System Handler
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set WhatsApp Link
+      const waBtn = document.getElementById('waCtaBtn');
+      waBtn.href = `https://wa.me/${DATA_WEBSITE.noWhatsApp}?text=${encodeURIComponent(DATA_WEBSITE.pesanWhatsApp)}`;
+
+      // Set Texts
+      document.getElementById('txtCategory').textContent = DATA_WEBSITE.kategori;
+      document.getElementById('txtTitle').textContent = DATA_WEBSITE.namaPasangan;
+      document.getElementById('txtYear').textContent = DATA_WEBSITE.tahun;
+      document.getElementById('txtBadge').textContent = DATA_WEBSITE.badge;
+      document.getElementById('txtDuration').textContent = DATA_WEBSITE.durasi;
+      document.getElementById('txtDescription').textContent = DATA_WEBSITE.deskripsi;
+
+      // Set Backgrounds
+      const heroBg = document.getElementById('heroBg');
+      const setHeroBg = () => {
+        if (window.innerWidth <= 768) {
+          heroBg.style.backgroundImage = `linear-gradient(0deg, #141414 45%, rgba(20,20,20,0.6) 75%, rgba(20,20,20,0.1) 100%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+        } else {
+          heroBg.style.backgroundImage = `linear-gradient(90deg, #141414 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0) 75%), url('${DATA_WEBSITE.fotoUtamaHero}')`;
+        }
+      };
+      setHeroBg();
+      window.addEventListener('resize', setHeroBg);
+
+      // Render Gallery
+      const galleryContainer = document.getElementById('galleryContainer');
+      galleryContainer.innerHTML = '';
+      DATA_WEBSITE.fotoMemories.forEach((url, idx) => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        cardDiv.innerHTML = `<img src="${url}" alt="Memory ${idx + 1}" class="gallery-img">`;
+        galleryContainer.appendChild(cardDiv);
+      });
+
+      // Modals Logic
+      const playBtn = document.getElementById('playBtn');
+      const videoModal = document.getElementById('videoModal');
+      const closeVideoBtn = document.getElementById('closeVideoBtn');
+      const youtubeIframe = document.getElementById('youtubeIframe');
+
+      const imageModal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      const closeImageBtn = document.getElementById('closeImageBtn');
+
+      playBtn.addEventListener('click', () => {
+        youtubeIframe.src = `https://www.youtube.com/embed/${DATA_WEBSITE.youtubeVideoId}?autoplay=1&rel=0`;
+        videoModal.style.display = 'flex';
+      });
+
+      const closeVideo = () => {
+        videoModal.style.display = 'none';
+        youtubeIframe.src = '';
+      };
+      closeVideoBtn.addEventListener('click', closeVideo);
+
+      document.querySelectorAll('.gallery-img').forEach(img => {
+        img.addEventListener('click', () => {
+          modalImg.src = img.src;
+          imageModal.style.display = 'flex';
+        });
+      });
+
+      const closeImage = () => {
+        imageModal.style.display = 'none';
+        modalImg.src = '';
+      };
+      closeImageBtn.addEventListener('click', closeImage);
+
+      window.addEventListener('click', (e) => {
+        if (e.target === videoModal) closeVideo();
+        if (e.target === imageModal) closeImage();
+      });
+    });
+  </script>
+</body>
+</html>
